@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤖 AI Ödev Kontrol Sistemi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Giriş Sayfası -->
+    <div id="loginPage" class="container">
+        <div class="login-container">
+            <header>
+                <h1>🔍 AI Yazım Tespit Sistemi</h1>
+                <p>Metin, belge veya resimde AI tarafından yazılıp yazılmadığını tespit edin</p>
+            </header>
+            
+            <div class="login-form-container">
+                <h2>👤 Giriş Yap</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="username">Kullanıcı Adı:</label>
+                        <input type="text" id="username" name="username" required placeholder="Kullanıcı adınızı girin">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Şifre:</label>
+                        <input type="password" id="password" name="password" required placeholder="Şifrenizi girin">
+                    </div>
+                    <button type="submit" class="login-btn">🚀 Giriş Yap</button>
+                </form>
+                <div class="login-info">
+                    <p><strong>Demo Kullanıcılar:</strong></p>
+                    <p>👤 <strong>admin</strong> - Şifre: <code>admin123</code></p>
+                    <p>👤 <strong>demo</strong> - Şifre: <code>demo123</code></p>
+                    <p>👤 <strong>test</strong> - Şifre: <code>test123</code></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ana Sayfa -->
+    <div id="mainPage" class="container" style="display: none;">
+        <header>
+            <div class="header-content">
+                <div>
+                    <h1>🔍 AI Yazım Tespit Sistemi</h1>
+                    <p>Metin, belge veya resimde AI tarafından yazılıp yazılmadığını tespit edin</p>
+                </div>
+                <div class="user-info">
+                    <span id="currentUser">Hoş geldiniz!</span>
+                    <button id="logoutBtn" class="logout-btn">Çıkış Yap</button>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="upload-area">
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="file">📁 Dosya Yükle</button>
+                    <button class="tab-btn" data-tab="text">✍️ Metin Gir</button>
+                </div>
+
+                <div class="tab-content active" id="fileTab">
+                    <form id="fileForm" class="upload-form">
+                        <div class="file-drop-zone" id="dropZone">
+                            <p>📁 Dosyayı buraya sürükleyin veya tıklayın</p>
+                            <input type="file" id="fileInput" accept=".txt,.doc,.docx,.pdf" hidden>
+                        </div>
+                        <button type="submit" class="submit-btn">🔍 AI ile Analiz Et</button>
+                    </form>
+                </div>
+
+                <div class="tab-content" id="textTab">
+                    <form id="textForm" class="upload-form">
+                        <textarea id="textInput" placeholder="Ödev metnini buraya yazın..." rows="8"></textarea>
+                        <button type="submit" class="submit-btn">🔍 AI ile Analiz Et</button>
+                    </form>
+                </div>
+            </div>
+
+            <div id="result" class="result-area hidden">
+                <h3>🔍 AI Tespit Sonucu</h3>
+                <div id="analysisContent" class="analysis-content"></div>
+                
+                <!-- Geri Bildirim Bölümü -->
+                <div class="feedback-section">
+                    <h4>📝 Analiz Doğruluğu</h4>
+                    <p>Bu analiz doğru mu? Geri bildiriminiz sistemin öğrenmesine yardımcı olur.</p>
+                    
+                    <div class="feedback-buttons">
+                        <button id="correctBtn" class="feedback-btn correct">✅ Doğru</button>
+                        <button id="incorrectBtn" class="feedback-btn incorrect">❌ Yanlış</button>
+                    </div>
+                    
+                    <div id="feedbackForm" class="feedback-form hidden">
+                        <h5>Gerçek sonuç nedir?</h5>
+                        <div class="radio-group">
+                            <label>
+                                <input type="radio" name="actualResult" value="ai">
+                                🤖 AI tarafından yazılmış
+                            </label>
+                            <label>
+                                <input type="radio" name="actualResult" value="human">
+                                👤 İnsan tarafından yazılmış
+                            </label>
+                        </div>
+                        
+                        <textarea id="feedbackNotes" placeholder="Ek notlarınız (isteğe bağlı)..." rows="3"></textarea>
+                        
+                        <div class="feedback-actions">
+                            <button id="submitFeedback" class="submit-feedback-btn">📤 Geri Bildirim Gönder</button>
+                            <button id="cancelFeedback" class="cancel-feedback-btn">❌ İptal</button>
+                        </div>
+                    </div>
+                    
+                    <div id="feedbackSuccess" class="feedback-success hidden">
+                        <p>✅ Geri bildiriminiz kaydedildi! Teşekkürler.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="loadingModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="spinner"></div>
+            <p>🤖 AI analizi yapılıyor...</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
